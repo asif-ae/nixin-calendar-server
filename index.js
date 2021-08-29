@@ -33,10 +33,8 @@ client.connect(err => {
   // Add Calendar API
   app.post('/addCalendar', (req, res) => {
     const newCalendar = req.body;
-    console.log('adding new Service', newCalendar);
     allCalendarCollection.insertOne(newCalendar)
     .then(result => {
-      console.log('inserted count:', result.insertedCount);
       res.send(result.insertedCount > 0)
     })
   })
@@ -52,17 +50,14 @@ client.connect(err => {
   // Add Events API
   app.post('/addEvents', (req, res) => {
     const newEvents = req.body;
-    console.log('adding new Service', newEvents);
     allEventsCollection.insertOne(newEvents)
     .then(result => {
-      console.log('inserted count:', result.insertedCount);
       res.send(result.insertedCount > 0)
     })
   })
 
   // Events by Calendar ID and Date
   app.get('/events', (req, res) => {
-    console.log(req.query.calendar, req.query.date);
     const filter = { calendarId: req.query.calendar, eventDate: req.query.date }
     allEventsCollection.find(filter)
     .toArray((err, documents) => {
@@ -73,9 +68,6 @@ client.connect(err => {
   app.get('/', (req, res) => {
     res.send(`Example app listening at https://aqueous-oasis-85656.herokuapp.com:${port}`)
   })
-
-  // perform actions on the collection object
-  // client.close();
 });
 
 
