@@ -71,7 +71,7 @@ client.connect(err => {
   })
 
   app.get('/', (req, res) => {
-    res.send(`Example app listening at http://localhost:${port}`)
+    res.send(`Example app listening at https://aqueous-oasis-85656.herokuapp.com:${port}`)
   })
 
   // perform actions on the collection object
